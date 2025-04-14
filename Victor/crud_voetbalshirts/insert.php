@@ -1,8 +1,8 @@
 <?php
-    // functie: formulier en database insert fiets
-    // auteur: Vul hier je naam in
+    // functie: formulier en database insert Kroeg
+    // auteur: Victor
 
-    echo "<h1>Insert shirt</h1>";
+    echo "<h1>Insert Bestelling</h1>";
 
     require_once('functions.php');
 	 
@@ -11,9 +11,9 @@
 
         // test of insert gelukt is
         if(insertRecord($_POST) == true){
-            echo "<script>alert('Shirt is toegevoegd')</script>";
+            echo "<script>alert('Bestelling is toegevoegd')</script>";
         } else {
-            echo '<script>alert("Shirt is NIET toegevoegd")</script>';
+            echo '<script>alert("Bestelling is NIET toegevoegd")</script>';
         }
     }
 ?>
@@ -21,20 +21,17 @@
     <body>
         <form method="post">
 
-        <label for="merk">Order:</label>
-        <input type="text" id="order" name="order" required><br>
+        <label for="id_klant">Klant:</label>
+        <input type="text" id="id_klant" name="id_klant" required><br>
 
-        <label for="type">Klant:</label>
-        <input type="text" id="klant" name="klant" required><br>
+        <label for="id_product">Product:</label>
+        <input type="text" id="id_product" name="id_product" required><br>
 
-        <label for="prijs">Product:</label>
-        <input type="number" id="product" name="product" required><br>
-
-        <label for="prijs">quantity:</label>
+        <label for="quantity">Quantity:</label>
         <input type="number" id="quantity" name="quantity" required><br>
 
-        <label for="prijs">Datum:</label>
-        <input type="number" id="datum" name="datum" required><br>
+        <label for="datum">Datum:</label>
+        <input type="date" id="datum" name="datum" required><br>
 
         <input type="submit" name="btn_ins" value="Insert">
         </form>

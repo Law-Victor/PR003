@@ -8,18 +8,30 @@
 </head>
 <body>
 
+<header>
+    <h1>Voetbalshop Bestellingen</h1>
+        <nav>
+            
+        </nav>
+</header>
+    
     <?php
-    // functie: Programma CRUD fietsen
-    // auteur: Vul hier je naam in   
+    // functie: Programma CRUD kroegen
+    // auteur: Victor  
 
     // Initialisatie
     include 'functions.php';
-
+    
     // Main
-
+    
     // Aanroep functie 
     crudMain();
     ?>
+
+<a href="">homepage</a><br><br>
+<footer>
+    <p>© 2025 Mijn Webshop</p>
+</footer>
 
 </body>
 </html>

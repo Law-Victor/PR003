@@ -1,6 +1,6 @@
 <?php
-// auteur: victor
-// functie:  crud
+// auteur: Victor
+// functie: configuratiebestand
 
 define("DATABASE", "voetbalshirts 2");
 define("SERVERNAME", "localhost");

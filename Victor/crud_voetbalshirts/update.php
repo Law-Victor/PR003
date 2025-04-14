@@ -1,6 +1,6 @@
 <?php
-    // functie: update fiets
-    // auteur: Vul hier je naam in
+    // functie: update Kroeg
+    // auteur: Victor
 
     require_once('functions.php');
 
@@ -9,17 +9,17 @@
 
         // test of update gelukt is
         if(updateRecord($_POST) == true){
-            echo "<script>alert('Fiets is gewijzigd')</script>";
+            echo "<script>alert('Bestelling is gewijzigd')</script>";
         } else {
-            echo '<script>alert("Fiets is NIET gewijzigd")</script>';
+            echo '<script>alert("Bestelling is NIET gewijzigd")</script>';
         }
     }
 
     // Test of id is meegegeven in de URL
-    if(isset($_GET['id'])){  
+    if(isset($_GET['id_order'])){  
         // Haal alle info van de betreffende id $_GET['id']
-        $id = $_GET['id'];
-        $row = getRecord($id);
+        $id_order = $_GET['id_order'];
+        $row = getRecord($id_order);
     
 ?>
 
@@ -29,21 +29,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>Wijzig Fiets</title>
+  <title>Wijzig Bestelling</title>
 </head>
 <body>
-  <h2>Wijzig Fiets</h2>
+  <h2>Wijzig Bestelling</h2>
   <form method="post">
     
-    <input type="hidden" id="merk" name="id" required value="<?php echo $row['id']; ?>"><br>
-    <label for="merk">Merk:</label>
-    <input type="text" id="merk" name="merk" required value="<?php echo $row['merk']; ?>"><br>
+    <input type="hidden" id="id_order" name="id_order" required value="<?php echo $row['id_order']; ?>"><br>
+    <label for="id_klant">Klant:</label>
+    <input type="text" id="id_klant" name="id_klant" required value="<?php echo $row['id_klant']; ?>"><br>
 
-    <label for="type">Type:</label>
-    <input type="text" id="type" name="type" required value="<?php echo $row['type']; ?>"><br>
+    <label for="id_product">Product:</label>
+    <input type="text" id="id_product" name="id_product" required value="<?php echo $row['id_product']; ?>"><br>
 
-    <label for="prijs">Prijs:</label>
-    <input type="number" id="prijs" name="prijs" required value="<?php echo $row['prijs']; ?>"><br>
+    <label for="quantity">Quantity:</label>
+    <input type="text" id="quantity" name="quantity" required value="<?php echo $row['quantity']; ?>"><br>
+
+    <label for="datum">Datum:</label>
+    <input type="text" id="datum" name="datum" required value="<?php echo $row['datum']; ?>"><br>
+
 
     <input type="submit" name="btn_wzg" value="Wijzig">
   </form>

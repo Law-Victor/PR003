@@ -1,6 +1,6 @@
 <?php
-// auteur: victor
-// functie: functies
+// auteur: Victor
+// functie: algemene functies tbv hergebruik
 
 include_once "config.php";
 
@@ -28,9 +28,9 @@ include_once "config.php";
 
     // Menu-item   insert
     $txt = "
-    <h1>Crud voetbalshirts</h1>
+    <h1></h1>
     <nav>
-		<a href='insert.php'>Toevoegen nieuwe shirt</a>
+		<a href='insert.php'>Toevoegen nieuwe Bestelling</a>
     </nav><br>";
     echo $txt;
 
@@ -61,14 +61,14 @@ include_once "config.php";
  }
 
  // selecteer de rij van de opgeven id uit de table fietsen
- function getRecord($id){
+ function getRecord($id_order){
     // Connect database
     $conn = connectDb();
 
     // Select data uit de opgegeven table methode prepare
-    $sql = "SELECT * FROM " . CRUD_TABLE . " WHERE id = :id";
+    $sql = "SELECT * FROM " . CRUD_TABLE . " WHERE id_order = :id_order";
     $query = $conn->prepare($sql);
-    $query->execute([':id'=>$id]);
+    $query->execute([':id_order'=>$id_order]);
     $result = $query->fetch();
 
     return $result;
@@ -104,13 +104,13 @@ function printCrudTabel($result){
         
         // Wijzig knopje
         $table .= "<td>
-            <form method='post' action='update.php?id=$row[id_order]' >       
+            <form method='post' action='update.php?id_order=$row[id_order]' >       
                 <button>Wzg</button>	 
             </form></td>";
 
         // Delete knopje
         $table .= "<td>
-            <form method='post' action='delete.php?id=$row[id_order]' >       
+            <form method='post' action='delete.php?id_order=$row[id_order]' >       
                 <button>Verwijder</button>	 
             </form></td>";
 
@@ -130,20 +130,22 @@ function updateRecord($row){
     // Maak een query 
     $sql = "UPDATE " . CRUD_TABLE .
     " SET 
-        merk = :merk, 
-        type = :type, 
-        prijs = :prijs
-    WHERE id = :id
+        id_klant = :id_klant, 
+        id_product = :id_product, 
+        quantity = :quantity,
+        datum = :datum
+    WHERE id_order = :id_order
     ";
 
     // Prepare query
     $stmt = $conn->prepare($sql);
     // Uitvoeren
     $stmt->execute([
-        ':merk'=>$row['merk'],
-        ':type'=>$row['type'],
-        ':prijs'=>$row['prijs'],
-        ':id'=>$row['id']
+        ':id_klant'=>$row['id_klant'],
+        ':id_product'=>$row['id_product'],
+        ':quantity'=>$row['quantity'],
+        ':datum'=>$row['datum'],
+        ':id_order'=>$row['id_order']
     ]);
 
     // test of database actie is gelukt
@@ -157,19 +159,18 @@ function insertRecord($post){
 
     // Maak een query 
     $sql = "
-        INSERT INTO " . CRUD_TABLE . " (merk, type, prijs)
-        VALUES (:merk, :type, :prijs) 
+        INSERT INTO " . CRUD_TABLE . " (id_klant, id_product, quantity, datum)
+        VALUES (:id_klant, :id_product, :quantity, :datum) 
     ";
 
     // Prepare query
     $stmt = $conn->prepare($sql);
     // Uitvoeren
     $stmt->execute([
-        ':order'=>$_POST['order'],
-        ':klant'=>$_POST['klant'],
-        ':product'=>$_POST['product'],
+        ':id_klant'=>$_POST['id_klant'],
+        ':id_product'=>$_POST['id_product'],
         ':quantity'=>$_POST['quantity'],
-        ':datum'=>$_POST['datum']   
+        ':datum'=>$_POST['datum']
     ]);
 
     
@@ -178,7 +179,7 @@ function insertRecord($post){
     return $retVal;  
 }
 
-function deleteRecord($id){
+function deleteRecord($id_order){
 
     // Connect database
     $conn = connectDb();
@@ -186,14 +187,14 @@ function deleteRecord($id){
     // Maak een query 
     $sql = "
     DELETE FROM " . CRUD_TABLE . 
-    " WHERE id = :id";
+    " WHERE id_order = :id_order";
 
     // Prepare query
     $stmt = $conn->prepare($sql);
 
     // Uitvoeren
     $stmt->execute([
-    ':id'=>$_GET['id']
+    ':id_order'=>$_GET['id_order']
     ]);
 
     // test of database actie is gelukt
@@ -201,4 +202,6 @@ function deleteRecord($id){
     return $retVal;
 }
 
+
 ?>
+
